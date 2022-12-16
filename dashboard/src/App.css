@@ -36,3 +36,85 @@
     transform: rotate(360deg);
   }
 }
+/*border color of blue 5px*/
+.workflow-table {
+  width: 100%;
+  border: 5px solid #000055;
+}
+
+/*make custom headers for workflow-table*/
+.workflow-table thead th {
+  background-color: #000055;
+  color: white;
+}
+
+/*have first td of each row in workflow table be of width 10%*/
+.workflow-table tr td:first-child {
+  width: 10%;
+}
+
+.table_main_page tr td:first-child {
+  width: 10vw;
+}
+
+/*have all td that are not first child be of max width that of the total number of rows in the table -1*/
+.workflow-table tr td:not(:first-child) {
+  max-width: 200px;
+}
+
+/*have all td be a max width of 20%*/
+.workflow-table td {
+  max-width: 20%;
+  color: #282c34;
+  border-right: 1px solid black;
+}
+
+/*make all tr have white background with border bottom black*/
+.workflow-table tr {
+  background-color: white;
+  border-bottom: 1px solid black;
+}
+
+.table_main_page {
+  background-color: #282c34;
+  color: white;
+  min-height: 100vh;
+  height: 100%;
+}
+
+/*format tables */
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){
+  background-color: #f2f2f2;
+  color: #282c34;
+}
+
+tr:nth-child(odd) > td > a {
+  color: white;
+} 
+
+tr:nth-child(even) > td > a {
+  color: #282c34;
+} 
+
+tr > td > a {
+  color: #282c34;
+} 
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/*format buttons */
+
