@@ -101,7 +101,7 @@ const GitReposTable = () => {
                         <tr>
                             <td><b>State</b></td>
                             {repo.workflows.workflows.map((workflow) => (
-                                <td>{workflow.badge_url}</td>
+                                <td><img href={workflow.badge_url}>{workflow.badge_url}</img></td>
                             ))}
                         </tr>
 
