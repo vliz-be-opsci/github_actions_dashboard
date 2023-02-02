@@ -192,7 +192,7 @@ const GitReposTable = () => {
                     className="tabs_container"
                     justify
                 >
-                    <Tab eventKey="repos" title="Repo Overview">
+                    <Tab eventKey="repos" title="Overview Repos">
                         <table>
                             <thead>
                                 <tr>
@@ -210,11 +210,11 @@ const GitReposTable = () => {
                             </tbody>
                         </table>
                     </Tab>
-                    <Tab eventKey="statistics" title="statistics">
+                    <Tab eventKey="statistics" title="Statistics">
                         <p>Quick statistics here</p>
                     </Tab>
-                    <Tab eventKey="othertab" title="othertab" disabled>
-                        <p>test 2</p>
+                    <Tab eventKey="othertab" title="Othertab" disabled>
+                        <p>I do not know what would come here</p>
                     </Tab>
                 </Tabs>
                 
