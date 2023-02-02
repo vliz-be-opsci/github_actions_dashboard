@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/*button with class nav-link should have color text black*/
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: white;
+}

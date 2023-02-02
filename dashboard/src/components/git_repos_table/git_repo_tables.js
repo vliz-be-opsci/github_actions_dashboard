@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getRepos , getWorkflows , getWorkflowDetails, getWorkflowStatus} from '../../api/octokit';
+import SearchBarOrg from '../search_bar_org/search_bar_org';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 /*const here that will determine the rate of calls that can be made*/ 
 const calldelayRepos = 2000; //repos
@@ -15,6 +18,7 @@ const GitReposTable = () => {
     const [search, setSearch] = useState('');
     const [searched, setSearched] = useState("");
     const [timedOut, setTimedOut] = useState(false);
+    const [key, setKey] = useState('repos');
 
     //useEffect that will trigger when repos is updated
     useEffect(() => {
@@ -146,16 +150,21 @@ const GitReposTable = () => {
             return(<>Loading...</>)
         }    
     }
-
     if (loading && searched == '') {
         return (
             <div className='table_main_page'>
-                <input type="text" placeholder="Search for a user or org" onChange={e => setSearch(e.target.value)} value={search}/>
-                <button onClick={e => searchUser()}>search</button>
+                {
+                    SearchBarOrg(
+                        {
+                            search: search,
+                            setSearch: setSearch,
+                            searchUser: searchUser
+                        }
+                    )
+                }
             </div>
         );
     }
-
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -165,25 +174,50 @@ const GitReposTable = () => {
     if (!loading && !error){
         return (
             <div className='table_main_page'>
-                <input type="text" placeholder="Search for a user or org" onChange={e => setSearch(e.target.value)} value={search}/>
-                <button onClick={e => searchUser()}>search</button>
+                {
+                SearchBarOrg(
+                    {
+                        search: search,
+                        setSearch: setSearch,
+                        searchUser: searchUser
+                    }
+                )
+                }
                 <h1>{searched} Github Repos</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Repo Name</th>
-                            <th>workflows</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {repos.map((repo) => (
-                            <tr key={repo.id}>
-                                <td><a href={repo.html_url} target="_blank">{repo.name}</a></td>
-                                <td>{getWorkflowCell(repo)}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <br></br>
+                <Tabs
+                    id="controlled-tab-example"
+                    activeKey={key}
+                    onSelect={(k) => setKey(k)}
+                    className="tabs_container"
+                    justify
+                >
+                    <Tab eventKey="repos" title="Repo Overview">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Repo Name</th>
+                                    <th>workflows</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {repos.map((repo) => (
+                                    <tr key={repo.id}>
+                                        <td><a href={repo.html_url} target="_blank">{repo.name}</a></td>
+                                        <td>{getWorkflowCell(repo)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </Tab>
+                    <Tab eventKey="statistics" title="statistics">
+                        <p>Quick statistics here</p>
+                    </Tab>
+                    <Tab eventKey="othertab" title="othertab" disabled>
+                        <p>test 2</p>
+                    </Tab>
+                </Tabs>
+                
             </div>
             
         );
