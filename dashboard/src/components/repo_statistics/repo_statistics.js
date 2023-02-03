@@ -58,10 +58,10 @@ const RepoStatistics = (props) => {
         datasets: [{
             data: [pre_formatted_stats.workflow_categories.not_run, pre_formatted_stats.workflow_categories.failed, pre_formatted_stats.workflow_categories.success, pre_formatted_stats.workflow_categories.other],
             backgroundColor: [
-            '#5bc0de',
-            '#d9534f',
-            '#5cb85c',
-            '#292b2c'
+            '#5bc0de70',
+            '#d9534f70',
+            '#5cb85c70',
+            '#292b2c70'
             ],
             hoverBackgroundColor: [
             '#5bc0de',
@@ -71,19 +71,67 @@ const RepoStatistics = (props) => {
             ]
         }]
     };
+
+    //a component that tries to return a barchart and if it fails then return nothing 
+    const BarChart = () => {
+        try{
+            //data for the bar chart is the total number of runs for each workflow
+            const databar = {
+                labels: ['Total Workflows', 'Total Repos'],
+                datasets: [
+                    {
+                        data: [pre_formatted_stats.total_workflows, pre_formatted_stats.total_repos],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                        ],
+                        hoverBackgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                        ],
+                        hoverborderColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderWidth: 1,
+                    },
+                ],
+            };
+
+
+            return (
+                <Bar
+                    data={databar}
+                    width={300}
+                    height={300}
+                    options={{
+                        maintainAspectRatio: true,
+                        responsive: true
+                    }}
+                />
+            );
+        }
+        catch{
+            return null;
+        }
+    }
+
     return (
         <div>
             <h1>Repo Statistics</h1>
             <div className='charts'>
                 <Doughnut 
                     data={data} 
-                    width={250}
-                    height={250}
                     options={{
                         maintainAspectRatio: true,
                         responsive: true
                     }}
                 />
+                <BarChart />
             </div>
             
         </div>
