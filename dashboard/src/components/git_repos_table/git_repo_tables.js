@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { getRepos , getWorkflows , getWorkflowDetails, getWorkflowStatus} from '../../api/octokit';
 import SearchBarOrg from '../search_bar_org/search_bar_org';
+import RepoStatistics from '../repo_statistics/repo_statistics';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
@@ -210,8 +211,13 @@ const GitReposTable = () => {
                             </tbody>
                         </table>
                     </Tab>
+<<<<<<< Updated upstream
                     <Tab eventKey="statistics" title="Statistics">
                         <p>Quick statistics here</p>
+=======
+                    <Tab eventKey="statistics" title="statistics">
+                        {RepoStatistics({repos:repos})}
+>>>>>>> Stashed changes
                     </Tab>
                     <Tab eventKey="othertab" title="Othertab" disabled>
                         <p>I do not know what would come here</p>

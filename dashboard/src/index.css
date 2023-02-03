@@ -19,3 +19,10 @@ code {
 .nav-link:hover {
   color: white;
 }
+.charts {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
