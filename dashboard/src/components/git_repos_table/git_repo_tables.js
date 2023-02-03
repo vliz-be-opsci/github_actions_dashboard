@@ -211,13 +211,8 @@ const GitReposTable = () => {
                             </tbody>
                         </table>
                     </Tab>
-<<<<<<< Updated upstream
-                    <Tab eventKey="statistics" title="Statistics">
-                        <p>Quick statistics here</p>
-=======
                     <Tab eventKey="statistics" title="statistics">
                         {RepoStatistics({repos:repos})}
->>>>>>> Stashed changes
                     </Tab>
                     <Tab eventKey="othertab" title="Othertab" disabled>
                         <p>I do not know what would come here</p>
