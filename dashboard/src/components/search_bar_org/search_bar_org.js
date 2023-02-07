@@ -10,7 +10,7 @@ const SearchBarOrg = (props) => {
     return (
         <div action="" class="search-bar">
             <input type="search" name="search" pattern=".*\S.*" onChange={e => setSearch(e.target.value)} value={search} required/>
-            <button class="search-btn" onClick={e => searchUser()}>
+            <button class="search-btn" onClick={e => searchUser(search)}>
                 <span>Search</span>
             </button>
         </div>

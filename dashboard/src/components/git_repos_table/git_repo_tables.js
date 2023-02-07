@@ -20,6 +20,23 @@ const GitReposTable = () => {
     const [searched, setSearched] = useState("");
     const [timedOut, setTimedOut] = useState(false);
     const [key, setKey] = useState('repos');
+    const [orgs, setOrgs] = useState("");
+
+    //when loading in the page check the fragment identifier to see if there is an org
+    useEffect(() => {
+        if (window.location.hash) {
+            // Set the orgs to the hash
+            setOrgs(window.location.hash.substring(1));
+            setSearch(window.location.hash.substring(1));
+            searchUser(window.location.hash.substring(1));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (searched != ""){
+            window.location.hash = searched;
+        }
+    }, [searched]);
 
     //useEffect that will trigger when repos is updated
     useEffect(() => {
@@ -66,9 +83,8 @@ const GitReposTable = () => {
         }
     }, [timedOut,searched]);
 
-
     //function that will search for a user or org
-    const searchUser = () => {
+    const searchUser = (search) => {
         getRepos(search).then((repos) => {
             for (let i = 0; i < repos.length; i++) {
                 repos[i]['workflows_loaded'] = false; 
@@ -76,6 +92,7 @@ const GitReposTable = () => {
             setRepos(repos);
             setLoading(false);
             setSearched(search);
+            setOrgs(search);
             setSearch('');
             setTimedOut(false);
         }).catch((err) => {
@@ -109,7 +126,6 @@ const GitReposTable = () => {
                                 <td><img src={workflow.badge_url} alt={workflow.badge_url}/></td>
                             ))}
                         </tr>
-
                         <tr>
                             <td><b>Latest Run Details</b></td>
                             {repo.workflows.workflows.map((workflow) => {
